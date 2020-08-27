@@ -26,7 +26,7 @@ function getpersonaje(id) {
 function generarCard(choosen) { 
 var card=`
 <div class="card" style="width: 18rem;">
-<img src="${choosen.sprites.back_default}" class="card-img-fluid" alt="...">
+<img src="${choosen.sprites.front_default}" class="card-img-top" alt="...">
   <div class="card-body">
     <p class="card-text">${choosen.name}</p>
   </div>
