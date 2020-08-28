@@ -10,7 +10,12 @@ $(function () {
     $("#buscar").click(function (e) {
         e.preventDefault();
         var id_personaje = $("#busqueda").val();
-        if(id_personaje>807 || id_personaje<0 || id_personaje===""){
+        if(id_personaje>807 || id_personaje<0 || id_personaje==="") {
+            alert('Ingrese un pokémon entre 1 y 807 o el nombre de un pokémon hasta Alola')
+            $('input').val("");
+            $("input").focus();
+        }
+        else if(isNaN(id_personaje)){
             alert('Ingrese un pokémon entre 1 y 807 o el nombre de un pokémon hasta Alola')
             $('input').val("");
             $("input").focus();
