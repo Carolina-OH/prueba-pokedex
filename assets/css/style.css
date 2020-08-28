@@ -5,6 +5,7 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+@import url("https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap");
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -9893,6 +9894,24 @@ h3 {
     border-color: #dee2e6;
   }
 }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Londrina Solid", cursive;
+}
+
+.tittle {
+  font-size: 3.125rem;
+}
+
+.buscaryboton {
+  text-align: center;
+}
+
+#cuerpo {
+  font-weight: 300;
+}
+
 nav {
   background-color: #ef5350;
 }

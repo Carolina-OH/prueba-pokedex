@@ -10,15 +10,21 @@ $(function () {
     $("#buscar").click(function (e) {
         e.preventDefault();
         var id_personaje = $("#busqueda").val();
+        if(id_personaje>807 || id_personaje<0 || id_personaje===""){
+            alert('Ingrese un pokémon entre 1 y 807 o el nombre de un pokémon hasta Alola')
+            $('input').val("");
+            $("input").focus();
+        }
+        else{
         console.log(id_personaje);
         getpersonaje(id_personaje);
+        $('input').val("");
+        $("input").focus();
+        }  
     });
-    
-    $("#limpiar").click(function (e) {
-        $("#busqueda").empty()
-    })
 
 });
+
 
 
 function getpersonaje(id) {
@@ -30,7 +36,6 @@ function getpersonaje(id) {
             $("#card").empty();
             $("#card").append(generarCard(response));
             generarGrafico();
-
         }
     });
 }
@@ -49,7 +54,7 @@ function generarCard(poke) {
     var card = `
         <div class="card" style="width: 18rem;">
         <div class="card-tittle" style="background-color:#ef5350; color:white">
-            <p class="card-text" style="text-align:center;">${nombre.toUpperCase()}</p>
+            <p class="card-text" style="text-align:center">${nombre.toUpperCase()}</p>
             <p style="text-align:center;">Tipo: ${tiposstr}</p>
         </div>
 
@@ -104,9 +109,8 @@ function generarGrafico (poke) {
         data: [              
         {
             // Change type to "doughnut", "line", "splineArea", etc.
-            type: "column",
+            type: "bar",
             dataPoints: [
-                { label: "Experiencia Base",    y: parseFloat(pokemon_agregados_arr[0][2].Experiencia_base)},
                 { label: "HP",                    y:parseFloat(pokemon_hp_arr)},
                 { label: "Ataque",                    y:parseFloat(pokemon_ataque_arr)},
                 {label: "Defensa",                    y:parseFloat(pokemon_defensa_arr)},
