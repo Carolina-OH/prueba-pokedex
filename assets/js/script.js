@@ -1,19 +1,25 @@
 var pokemon_agregados_arr=[]
+var pokemon_hp_arr=[]
+var pokemon_ataque_arr=[]
+var pokemon_defensa_arr=[]
+var pokemon_ataqueespecial_arr=[]
+var pokemon_defensaespecial_arr=[]
+var pokemon_velocidad_arr=[]
 
 $(function () {
-    //asd
+    $("#buscar").click(function (e) {
+        e.preventDefault();
+        var id_personaje = $("#busqueda").val();
+        console.log(id_personaje);
+        getpersonaje(id_personaje);
+    });
+    
+    $("#limpiar").click(function (e) {
+        $("#busqueda").empty()
+    })
 
 });
-$("#buscar").click(function (e) {
-    e.preventDefault();
-    var id_personaje = $("#busqueda").val();
-    console.log(id_personaje);
-    getpersonaje(id_personaje);
-});
 
-$("#limpiar").click(function (e) {
-    $("#busqueda").empty()
-})
 
 function getpersonaje(id) {
     $.ajax({
@@ -42,7 +48,7 @@ function generarCard(poke) {
     pokemon_agregados_arr=[]
     var card = `
         <div class="card" style="width: 18rem;">
-        <div class="card-tittle">
+        <div class="card-tittle" style="background-color:#ef5350; color:white">
             <p class="card-text" style="text-align:center;">${nombre.toUpperCase()}</p>
             <p style="text-align:center;">Tipo: ${tiposstr}</p>
         </div>
@@ -65,7 +71,27 @@ function generarCard(poke) {
         var altura=poke.height
         var datos_pokemon=[{"Peso": peso},{"Altura": altura},{"Experiencia_base": expbase}]
         pokemon_agregados_arr.push(datos_pokemon)
+        //estadisticas pokemon
         console.log(pokemon_agregados_arr)
+        var hp=poke.stats[0].base_stat
+        console.log(hp)
+        pokemon_hp_arr.push(hp)
+        var ataque=poke.stats[1].base_stat
+        console.log(ataque)
+        pokemon_ataque_arr.push(ataque)
+        var defensa=poke.stats[2].base_stat
+        pokemon_defensa_arr.push(defensa)
+        console.log(defensa)
+        var ataque_especial=poke.stats[3].base_stat
+        pokemon_ataqueespecial_arr.push(ataque_especial)
+        console.log(ataque_especial)
+        var defensa_especial=poke.stats[4].base_stat
+        pokemon_defensaespecial_arr.push(defensa_especial)
+        console.log(defensa_especial)
+        var velocidad=poke.stats[5].base_stat
+        pokemon_velocidad_arr.push(velocidad)
+        console.log(velocidad)
+
     return card;
 };
 
@@ -80,9 +106,13 @@ function generarGrafico (poke) {
             // Change type to "doughnut", "line", "splineArea", etc.
             type: "column",
             dataPoints: [
-                { label: "Altura (m)",              y: parseFloat(pokemon_agregados_arr[0][1].Altura)  },
-                { label: "Peso (Kg)",                y: parseFloat(pokemon_agregados_arr[0][0].Peso)   },
-                { label: "Experiencia Base",    y: parseFloat(pokemon_agregados_arr[0][2].Experiencia_base)}
+                { label: "Experiencia Base",    y: parseFloat(pokemon_agregados_arr[0][2].Experiencia_base)},
+                { label: "HP",                    y:parseFloat(pokemon_hp_arr)},
+                { label: "Ataque",                    y:parseFloat(pokemon_ataque_arr)},
+                {label: "Defensa",                    y:parseFloat(pokemon_defensa_arr)},
+                {label: "Ataque Especial",                    y:parseFloat(pokemon_ataqueespecial_arr)},
+                { label: "Defensa Especial",                    y:parseFloat(pokemon_defensaespecial_arr)},
+                { label: "Velocidad",                    y:parseFloat(pokemon_velocidad_arr)}
                 
             ]
         }
@@ -91,3 +121,5 @@ function generarGrafico (poke) {
     
     $("#grafico").CanvasJSChart(options);
     }
+
+
