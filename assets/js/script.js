@@ -15,11 +15,6 @@ $(function () {
             $('input').val("");
             $("input").focus();
         }
-        else if(isNaN(id_personaje)){
-            alert('Ingrese un pokémon entre 1 y 807 o el nombre de un pokémon hasta Alola')
-            $('input').val("");
-            $("input").focus();
-        }
         else{
         console.log(id_personaje);
         getpersonaje(id_personaje);
