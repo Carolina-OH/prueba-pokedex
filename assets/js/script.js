@@ -9,7 +9,7 @@ var pokemon_velocidad_arr=[]
 $(function () {
     $("#buscar").click(function (e) {
         e.preventDefault();
-        var id_personaje = $("#busqueda").val();
+        var id_personaje = $("#busqueda").val().toLowerCase();
         if(id_personaje>807 || id_personaje<0 || id_personaje==="") {
             alert('Ingrese un pokémon entre 1 y 807 o el nombre de un pokémon hasta Alola')
             $('input').val("");
@@ -22,7 +22,24 @@ $(function () {
         $("input").focus();
         }  
     });
+    $(document).keypress(e=>{
+        if(e.which == 13){
+            var id_personaje = $("#busqueda").val().toLowerCase();
+            if(id_personaje>807 || id_personaje<0 || id_personaje==="") {
+                alert('Ingrese un pokémon entre 1 y 807 o el nombre de un pokémon hasta Alola')
+                $('input').val("");
+                $("input").focus();
+            }
+            else{
+            console.log(id_personaje);
+            getpersonaje(id_personaje);
+            $('input').val("");
+            $("input").focus();
+            }  
+        }
+      })
 
+    
 });
 
 
